@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --system-blue: #00a8ff;
+  --system-blue-dim: rgba(0, 168, 255, 0.1);
+  --system-dark: #0a0a12;
+  --system-dark-overlay: rgba(10, 10, 18, 0.95);
+  --system-text: #ffffff;
+  --system-text-dim: #8899a6;
+  --system-danger: #ff3333;
+  --system-gold: #ffd700;
+  
+  --system-glow: 0 0 10px rgba(0, 168, 255, 0.5), 0 0 20px rgba(0, 168, 255, 0.3);
+  --system-border: 1px solid rgba(0, 168, 255, 0.5);
+  
+  font-family: 'Rajdhani', sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  
+  color-scheme: dark;
+  color: var(--system-text);
+  background-color: var(--system-dark);
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--system-dark);
+  background-image: 
+    linear-gradient(rgba(0, 168, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 168, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--system-dark); 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--system-blue); 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0080c0; 
+}
+
+/* Utilities */
+.text-blue { color: var(--system-blue); }
+.text-gold { color: var(--system-gold); }
+.text-danger { color: var(--system-danger); }
+
+.glow-text { text-shadow: 0 0 5px rgba(0, 168, 255, 0.8); }
+.glow-box { box-shadow: var(--system-glow); }
+
+.system-border {
+  border: var(--system-border);
+  background: var(--system-dark-overlay);
+  backdrop-filter: blur(5px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button {
+  border-radius: 0;
+  border: 1px solid var(--system-blue);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--system-blue);
+  cursor: pointer;
+  transition: all 0.25s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: var(--system-blue);
+  color: var(--system-dark);
+  box-shadow: var(--system-glow);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
