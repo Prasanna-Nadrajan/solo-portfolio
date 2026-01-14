@@ -1,5 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { Home, Briefcase, User, FileText, Mail } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import {
+  Home,
+  Briefcase,
+  User,
+  FileText,
+  Mail,
+  BookOpen,
+  Layers,
+  Award,
+} from "lucide-react";
 
 const MagneticWrapper = ({ children }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -23,9 +32,9 @@ const MagneticWrapper = ({ children }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transition: 'transform 0.2s cubic-bezier(0.33, 1, 0.68, 1)',
+        transition: "transform 0.2s cubic-bezier(0.33, 1, 0.68, 1)",
         transform: `translate(${position.x}px, ${position.y}px)`,
-        display: 'inline-block'
+        display: "inline-block",
       }}
     >
       {children}
@@ -35,22 +44,27 @@ const MagneticWrapper = ({ children }) => {
 
 const Navbar = () => {
   const navItems = [
-    { icon: <Home size={22} />, label: 'Home', link: '#' },
-    { icon: <Briefcase size={22} />, label: 'Work', link: '#work' },
-    { icon: <User size={22} />, label: 'About', link: '#about' },
-    { icon: <FileText size={22} />, label: 'Resume', link: '#' },
-    { icon: <Mail size={22} />, label: 'Contact', link: '#contact' },
+    { icon: <User size={20} />, label: "About", link: "#about" },
+    { icon: <Briefcase size={20} />, label: "Projects", link: "#projects" },
+    { icon: <BookOpen size={20} />, label: "Blog", link: "#blog" },
+    { icon: <Layers size={20} />, label: "Platforms", link: "#platforms" },
+    { icon: <Award size={20} />, label: "Experience", link: "#experience" },
+    { icon: <FileText size={20} />, label: "Resume", link: "#resume" },
+    { icon: <Mail size={20} />, label: "Contact", link: "#contact" },
   ];
 
   return (
     <nav className="liquid-nav">
       {navItems.map((item, index) => (
         <MagneticWrapper key={index}>
-          <div className="nav-item-container">
-            <a href={item.link} className="nav-icon-link">
-              {item.icon}
-              <span className="tooltip">{item.label}</span>
+          <div className="nav-item">
+            <a href={item.link} className="nav-link">
+              <span className="icon-wrapper">{item.icon}</span>
             </a>
+            <span className="tooltip">
+              {item.label}
+              <span className="tooltip-arrow" />
+            </span>
           </div>
         </MagneticWrapper>
       ))}
@@ -59,7 +73,7 @@ const Navbar = () => {
         .liquid-nav {
           position: fixed;
           bottom: 2.5rem;
-          left: '50%';
+          left: 50%;
           transform: translateX(-50%);
           z-index: 1000;
           display: flex;
@@ -67,13 +81,15 @@ const Navbar = () => {
           padding: 0.8rem 1.2rem;
           background: rgba(20, 20, 20, 0.4);
           backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
           border-radius: 2.5rem;
           border: 1px solid rgba(255, 255, 255, 0.1);
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-          left: 50%;
+          max-width: 95vw;
+          box-sizing: border-box;
         }
 
-        .nav-icon-link {
+        .nav-link {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -82,13 +98,18 @@ const Navbar = () => {
           color: rgba(255, 255, 255, 0.5);
           text-decoration: none;
           border-radius: 50%;
-          transition: color 0.3s ease, background 0.3s ease;
-          position: relative;
+          transition: all 0.3s ease;
         }
 
-        .nav-icon-link:hover {
+        .nav-link:hover {
           background: rgba(255, 255, 255, 0.08);
-          color: #fff;
+          color: #fff !important;
+        }
+        
+        .nav-item:hover .tooltip {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0);
         }
 
         .tooltip {
@@ -106,15 +127,10 @@ const Navbar = () => {
           visibility: hidden;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           white-space: nowrap;
+          pointer-events: none;
         }
 
-        .nav-item-container:hover .tooltip {
-          opacity: 1;
-          visibility: visible;
-          transform: translateX(-50%) translateY(0);
-        }
-
-        .tooltip::after {
+        .tooltip-arrow {
           content: '';
           position: absolute;
           top: 100%;
@@ -123,6 +139,42 @@ const Navbar = () => {
           border-width: 6px;
           border-style: solid;
           border-color: #fff transparent transparent transparent;
+        }
+
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+          .liquid-nav {
+            bottom: 1.5rem;
+            gap: 0.3rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 2rem;
+          }
+          
+          .nav-link {
+            width: 40px;
+            height: 40px;
+          }
+
+          .icon-wrapper svg {
+            width: 18px;
+            height: 18px;
+          }
+          
+          /* Tooltips are often finicky on mobile touch, so we hide or adjust them */
+          .tooltip {
+             display: none; 
+          }
+        }
+
+        @media (max-width: 400px) {
+          .liquid-nav {
+            gap: 0.1rem;
+            padding: 0.4rem 0.5rem;
+          }
+          .nav-link {
+            width: 36px;
+            height: 36px;
+          }
         }
       `}</style>
     </nav>

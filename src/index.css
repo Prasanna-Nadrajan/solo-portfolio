@@ -1,26 +1,20 @@
+/* 1. Updated import to the Play font family */
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
+
 :root {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
+  /* 2. Updated global body font to Play */
+  font-family: "Play", sans-serif;
+  background-color: #000;
+  color: #fff;
   color-scheme: dark;
-  color: #ffffff;
-  background-color: #000000;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
-  display: block;
-  /* Changed from flex/place-items center to allow normal flow */
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #000000;
+  padding: 0;
+  box-sizing: border-box;
   overflow-x: hidden;
+  background-color: #000;
 }
 
 * {
@@ -40,6 +34,6 @@ body {
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+::selection {
+  background: rgba(139, 92, 246, 0.3);
 }
